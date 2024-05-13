@@ -33,7 +33,7 @@ module "blug_vpc" {
 resource "aws_instance" "blog" {
   ami           = data.aws_ami.app_ami.id
   instance_type = var.instance_type
-  vpc_security_group_ids =[module.blog_sg.security_group_id]
+  vpc_security_group_ids =module.blog_sg.security_group_id
   subnet_id = module.blug_vpc.public_subnets[0]
   tags = {
     Name        = "101-aws"
@@ -70,16 +70,16 @@ module "blog_alb" {
         backend_protocol = "HTTP"
         backend_port     = 80
         target_type      = "instance"
-        targets = [
-          {
-            target_id = aws_instance.blog.id
-            port = 80
-          },
-          {
-            target_id = aws_instance.blog.id
-            port = 8080
-          }
-        ]
+        # targets = [
+        #   {
+        #     target_id = aws_instance.blog.id
+        #     port = 80
+        #   },
+        #   {
+        #     target_id = aws_instance.blog.id
+        #     port = 8080
+        #   }
+        # ]
       }
     ]
 
