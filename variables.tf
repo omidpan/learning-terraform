@@ -14,7 +14,7 @@ variable "ami_filter" {
       owner = "979382823631" # Bitnami
     }
 }
-variable "environmnet" {
+variable "environment" {
   description = "Development Environment"
   type= object({
     name           = string
