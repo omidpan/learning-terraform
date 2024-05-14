@@ -2,9 +2,9 @@ module "qa" {
  source = "../modules/blog"
 
   environment = {
-    name = "prod"
-    network_prefix = "10.2"
+    name = "qa"
+    network_prefix = "10.1"
   }
-  asg_min_size=0
-  asg_max_size = 0
+  asg_min_size=1
+  asg_max_size = 1
 }
