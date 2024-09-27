@@ -1,2 +1,4 @@
 terraform_accessKeys.csv
 .env
+.terraform*
+*.tfstate*
