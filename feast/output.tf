@@ -1,5 +1,5 @@
 output "redshift_spectrum_arn" {
-  value = aws_iam_role
+  value = aws_iam_role.arn
 }
 
 output "credit_history_table" {
