@@ -21,7 +21,9 @@ resource "aws_s3_bucket_object" "loan_features_file_upload" {
   key    = "loan_features/table.parquet"
   source = "${path.module}/../data/loan_table.parquet"
 }
-
+data "aws_iam_role" "admin_access" {
+  name = "AdministratorAccess"
+}
 # resource "aws_iam_role" "s3_spectrum_role" {
 #   name = "s3_spectrum_role"
 
