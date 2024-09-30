@@ -45,15 +45,15 @@ data "aws_iam_role" "AWSServiceRoleForRedshift" {
   name = "AWSServiceRoleForRedshift"
 }
 
-resource "aws_iam_role_policy_attachment" "s3_read" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
-  role       = aws_iam_role.s3_spectrum_role.name
-}
+# resource "aws_iam_role_policy_attachment" "s3_read" {
+#   policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+#   role       = aws_iam_role.s3_spectrum_role.name
+# }
 
-resource "aws_iam_role_policy_attachment" "glue_full" {
-  policy_arn = "arn:aws:iam::aws:policy/AWSGlueConsoleFullAccess"
-  role       = aws_iam_role.s3_spectrum_role.name
-}
+# resource "aws_iam_role_policy_attachment" "glue_full" {
+#   policy_arn = "arn:aws:iam::aws:policy/AWSGlueConsoleFullAccess"
+#   role       = aws_iam_role.s3_spectrum_role.name
+# }
 
 # resource "aws_iam_policy" "s3_full_access_policy" {
 #   name = "s3_full_access_policy"
