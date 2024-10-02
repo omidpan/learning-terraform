@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "feast_bucket" {
-  bucket        = "${var.project_name}-bucket"
+  bucket        = "${var.project_name}-bucket-101"
   acl           = "private"
   force_destroy = true
 }
@@ -31,6 +31,24 @@ resource "aws_iam_role_policy_attachment" "admin_access" {
 
 resource "aws_iam_role" "s3_spectrum_role" {
   name = "s3_spectrum_role"
+
+  assume_role_policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "redshift.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+EOF
+}
+resource "aws_iam_role" "redshift_role" {
+  name = "redshift_role"
 
   assume_role_policy = <<EOF
 {
@@ -89,7 +107,7 @@ resource "aws_iam_role_policy_attachment" "s3-policy-attachment" {
 resource "aws_redshift_cluster" "feast_redshift_cluster" {
   cluster_identifier = "${var.project_name}-redshift-cluster"
   iam_roles = [
-     "arn:aws:iam::aws:policy/service-role/AWSServiceRoleForRedshift",  # Use the ARN directly
+   aws_iam_role.redshift_role.arn,
     aws_iam_role.s3_spectrum_role.arn
   ]
   database_name   = var.database_name
