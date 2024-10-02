@@ -7,19 +7,19 @@ resource "aws_s3_bucket" "feast_bucket" {
 resource "aws_s3_bucket_object" "zipcode_features_file_upload" {
   bucket = aws_s3_bucket.feast_bucket.bucket
   key    = "zipcode_features/table.parquet"
-  source = "${path.module}/../data/zipcode_table.parquet"
+  source = "${path.module}/data/zipcode_table.parquet"
 }
 
 resource "aws_s3_bucket_object" "credit_history_file_upload" {
   bucket = aws_s3_bucket.feast_bucket.bucket
   key    = "credit_history/table.parquet"
-  source = "${path.module}/../data/credit_history.parquet"
+  source = "${path.module}/data/credit_history.parquet"
 }
 
 resource "aws_s3_bucket_object" "loan_features_file_upload" {
   bucket = aws_s3_bucket.feast_bucket.bucket
   key    = "loan_features/table.parquet"
-  source = "${path.module}/../data/loan_table.parquet"
+  source = "${path.module}/data/loan_table.parquet"
 }
 # data "aws_iam_role" "admin_access" {
 #   name = "AdministratorAccess"
