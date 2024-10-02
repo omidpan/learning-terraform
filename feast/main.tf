@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "feast_bucket" {
-  bucket        = "${var.project_name}-bucket"
+  bucket        = "${var.project_name}-bucket-for-hmh-to-evaluate-1234"
   acl           = "private"
   force_destroy = true
 }
