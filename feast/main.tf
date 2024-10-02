@@ -119,10 +119,12 @@ resource "aws_redshift_cluster" "feast_redshift_cluster" {
 
   skip_final_snapshot = true
 }
-
+resource "aws_glue_catalog_database" "feast_glue_database" {
+  name = "${var.database_name}"  
+}
 resource "aws_glue_catalog_table" "zipcode_features_table" {
   name          = "zipcode_features"
-  database_name = var.database_name
+  database_name = aws_glue_catalog_database.feast_glue_database.name
 
   table_type = "EXTERNAL_TABLE"
 
@@ -187,7 +189,7 @@ resource "aws_glue_catalog_table" "zipcode_features_table" {
 
 resource "aws_glue_catalog_table" "credit_history_table" {
   name          = "credit_history"
-  database_name = var.database_name
+  database_name = aws_glue_catalog_database.feast_glue_database.name
 
   table_type = "EXTERNAL_TABLE"
 
