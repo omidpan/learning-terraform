@@ -21,9 +21,14 @@ resource "aws_s3_bucket_object" "loan_features_file_upload" {
   key    = "loan_features/table.parquet"
   source = "${path.module}/../data/loan_table.parquet"
 }
-data "aws_iam_role" "admin_access" {
-  name = "AdministratorAccess"
+# data "aws_iam_role" "admin_access" {
+#   name = "AdministratorAccess"
+# }
+resource "aws_iam_role_policy_attachment" "admin_access" {
+  role       = aws_iam_role.s3_spectrum_role.name  # Or any other IAM role you want to attach this to
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"  # Use the policy ARN directly
 }
+
 resource "aws_iam_role" "s3_spectrum_role" {
   name = "s3_spectrum_role"
 
@@ -43,9 +48,9 @@ resource "aws_iam_role" "s3_spectrum_role" {
 EOF
 }
 
-data "aws_iam_role" "AWSServiceRoleForRedshift" {
-  name = "AWSServiceRoleForRedshift"
-}
+# data "aws_iam_role" "AWSServiceRoleForRedshift" {
+#   name = "AWSServiceRoleForRedshift"
+# }
 
 resource "aws_iam_role_policy_attachment" "s3_read" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
