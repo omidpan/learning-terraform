@@ -2,3 +2,5 @@ terraform_accessKeys.csv
 .env
 .terraform*
 *.tfstate*
+feast/feature_repo/registry.db
+feast/text.text
