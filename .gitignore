@@ -7,3 +7,4 @@ feast/text.text
 mlflow/mlartifacts/*
 mlruns
 feast/feature_repo/check_redshift_source.py
+feast/feature_repo/feature_store.yaml
