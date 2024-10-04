@@ -6,9 +6,10 @@ online_store:
     region: us-west-2
 offline_store:
     type: redshift
-    cluster_id: [SET YOUR CLUSTER ID]
+    # cluster_id: [SET YOUR CLUSTER ID]
+    cluster_id: feast-demo-redshift-cluster
     region: us-west-2
     user: admin
     database: dev
-    s3_staging_location: [SET YOUR BUCKET]
-    iam_role: [SET YOUR ARN]
+    s3_staging_location: "s3://feast_integration-tests/real-time_credit_scoring_aws"
+    iam_role: arn:aws:iam::525024613134:role/s3_spectrum_role"
